@@ -42,7 +42,8 @@ public class ClientApplication {
 							
 							if(b)
 							{
-								System.out.println("Admin login Sucessfull ...");
+								System.out.println("Admin Login Sucessfully ");
+									
 							}
 							else
 							{
