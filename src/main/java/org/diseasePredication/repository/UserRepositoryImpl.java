@@ -26,7 +26,7 @@ public class UserRepositoryImpl extends DBInitilize implements UserRepository {
 				return true;
 			}
 
-			new DublicateUserFoundException(user.getEmail());
+			throw new DublicateUserFoundException(user.getEmail());
 
 		} catch (DublicateUserFoundException ex) {
 			System.out.println("Exception " + ex.getErrorMsg());
