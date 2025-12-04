@@ -9,7 +9,7 @@ import org.diseasePredication.repository.SymptomsRepositoryImpl;
 
 
 public class SymptomsHelper {
-	public static void main(String[] args)
+	public static void crudSymtoms()
 	{
 		do {
 			Scanner sc=new Scanner(System.in);

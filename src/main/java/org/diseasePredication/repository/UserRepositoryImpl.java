@@ -16,6 +16,14 @@ public class UserRepositoryImpl extends DBInitilize implements UserRepository {
 		// TODO Auto-generated method stub
 
 		try {
+			
+			stsmt=conn.prepareStatement("select username from users where gmail =?");
+			stsmt.setString(1, user.getEmail());
+			rs=stsmt.executeQuery();
+			while(rs.next())
+			{
+				throw new DublicateUserFoundException(user.getEmail());
+			}
 			stsmt = conn.prepareStatement("insert into users(username,password,gmail) values (?,?,?)");
 			stsmt.setString(1, user.getName());
 			stsmt.setString(2, user.getPassword());
