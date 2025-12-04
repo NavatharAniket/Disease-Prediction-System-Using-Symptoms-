@@ -5,16 +5,16 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.HashSet;
 
+import org.diseasePredication.model.HistoryModel;
 import org.diseasePredication.model.SymptomsModel;
+import org.diseasePredication.repository.UserHistoryRepo;
+import org.diseasePredication.repository.UserHistoryRepoImpl;
 import org.diseasePredication.services.DiseasePredictor;
+import org.diseasePredication.services.PredictionResult;
 
 public class UserLoginHelper {
-		public static void main(String[] args)
-		{
-			UserLoginHelper u=new UserLoginHelper();
-			u.getUserDiseaseInfo();
-		}
-		public static void getUserDiseaseInfo()
+
+		public static void getUserDiseaseInfo(String email)
 		{
 			Scanner sc=new Scanner(System.in);
 			System.out.println("List of all Symptoms");
@@ -51,11 +51,27 @@ public class UserLoginHelper {
 			
 			System.out.println("User Symptoms => " + symptomsInput);
 			
-			String predictedDisease = DiseasePredictor.predictDisease(symptomsInput);
+			PredictionResult result = DiseasePredictor.predictDiseaseWithConfidence(symptomsInput);
+			String deasease=result.getDisease();
+			double d=(result.getConfidence() * 100);
+			System.out.println("Predicted Disease: " + deasease);
+			System.out.println("Confidence: " + d + "%");
 			
-			System.out.println("\n=== Prediction Result ===");
-	        System.out.println("Based on your symptoms:");
-	        System.out.println(userSymptoms);
-	        System.out.println("\nPredicted Disease: " + predictedDisease);
+			HistoryModel history=new HistoryModel();
+			history.setEmail(email);
+			history.setUserSymtoms(symptomsInput);
+			history.setPredictedDisease(deasease);
+			history.setConfidence(d);
+			
+			UserHistoryRepo userHistoryRepo=new UserHistoryRepoImpl();
+			boolean b=userHistoryRepo.storeUserHistory(history);
+			if(b)
+			{
+				System.out.println("History stored sucessfully ");
+			}
+			else
+			{
+				System.out.println("History not stored ");
+			}
 		}
 }

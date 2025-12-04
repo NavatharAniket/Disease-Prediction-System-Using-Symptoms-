@@ -98,4 +98,39 @@ public class DiseasePredictor {
             return "Error in prediction";
         }
     }
+    
+    public static PredictionResult predictDiseaseWithConfidence(String symptomsInput) {
+        try {
+            Instances inputData = new Instances(modelStructure, 1);
+
+            DenseInstance inst = new DenseInstance(modelStructure.numAttributes());
+            inst.setDataset(modelStructure);
+
+            inst.setValue(0, symptomsInput);
+            inputData.add(inst);
+
+            // Apply filter
+            Instances filteredInput = Filter.useFilter(inputData, filter);
+
+            // Get probability distribution
+            double[] distribution = classifier.distributionForInstance(filteredInput.firstInstance());
+
+            int bestIndex = 0;
+            for (int i = 1; i < distribution.length; i++) {
+                if (distribution[i] > distribution[bestIndex]) {
+                    bestIndex = i;
+                }
+            }
+
+            String disease = filteredInput.classAttribute().value(bestIndex);
+            double confidence = distribution[bestIndex];
+
+            return new PredictionResult(disease, confidence);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new PredictionResult("Error", 0.0);
+        }
+    }
+
 }

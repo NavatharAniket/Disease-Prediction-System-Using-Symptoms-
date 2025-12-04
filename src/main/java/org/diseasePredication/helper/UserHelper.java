@@ -9,6 +9,7 @@ import org.diseasePredication.model.UserModel;
 
 public class UserHelper {
 	public static void crudUsers() {
+		int k=0;
 		do {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("1 - Add New user");
@@ -17,7 +18,7 @@ public class UserHelper {
 			System.out.println("4 - Delete User using email");
 			System.out.println("5 - enter for go admin panel ");
 			int choice = sc.nextInt();
-
+			k=choice;
 			switch (choice) {
 			case 1:
 				try {
@@ -136,7 +137,7 @@ public class UserHelper {
 				break;
 			case 5:
 				System.out.println("Exit from used crud ");
-				System.exit(0);
+				return;
 			default:
 				System.out.println("Enter envalid choice ...!");
 			}

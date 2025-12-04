@@ -25,7 +25,6 @@ public class DiseaseHelper {
 			System.out.println("enter 5 go for admin panel");
 			System.out.println("Enter your choice");
 			int choice = sc.nextInt();
-
 			switch (choice) {
 			case 1:
 				try {
@@ -146,8 +145,8 @@ public class DiseaseHelper {
 				
 				break;
 			case 5:
-				
-				break;
+				System.out.println("Exit from disease crud ");
+				return ;
 			default:
 				System.out.println("Enter valid choice");
 			}

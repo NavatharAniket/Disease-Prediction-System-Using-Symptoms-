@@ -19,7 +19,6 @@ public class SymptomsHelper {
 			System.out.println("Enter 4 for go admin panel");
 			System.out.println("Enter your choice");
 			int choice =sc.nextInt();
-			
 			switch(choice)
 			{
 				case 1:
@@ -59,7 +58,8 @@ public class SymptomsHelper {
 						}
 						break;
 				case 4:
-						break;
+						System.out.println("Exit from Symtoms crud ");
+						return ;
 				default:
 						System.out.println("Enter valid choice ...! ");
 			}

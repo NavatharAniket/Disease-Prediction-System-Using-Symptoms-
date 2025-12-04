@@ -51,6 +51,7 @@ public class ClientApplication {
 				boolean b = validateAdmin.verifyAdminLogin(login);
 
 				if (b) {
+					int p=0;
 					do {
 						System.out.println("Admin Login Sucessfully ");
 						System.out.println("Admin Menu :-");
@@ -59,6 +60,7 @@ public class ClientApplication {
 						System.out.println("Enter 3 for Disease Admin");
 						System.out.println("Enter 4 for exit application");
 						int choice = sc.nextInt();
+						p=choice;
 						switch (choice) {
 						case 1:
 							UserHelper.crudUsers();
@@ -74,7 +76,7 @@ public class ClientApplication {
 						default:
 							System.out.println("Enter valid choice ");
 						}
-					} while (true);
+					} while (p!=4);
 				} else {
 					System.out.println("Admin login unsucessfull........");
 				}
@@ -105,7 +107,7 @@ public class ClientApplication {
 					if(flag)
 					{
 						System.out.println("user is valid");
-						UserLoginHelper.getUserDiseaseInfo();
+						UserLoginHelper.getUserDiseaseInfo(email);
 					}
 					else
 					{
