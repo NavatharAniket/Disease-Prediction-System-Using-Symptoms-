@@ -17,12 +17,13 @@ public class DiseaseHelper {
 	public static void crudDisease() {
 		Scanner sc = new Scanner(System.in);
 		do {
-
+			System.out.println("------------------------------------------------------------------------");
 			System.out.println("Enter 1 for add Disease");
 			System.out.println("Enter 2 for View All Disease");
 			System.out.println("Enter 3 for Update Disease");
 			System.out.println("Enter 4 for Delete Disease");
 			System.out.println("enter 5 go for admin panel");
+			System.out.println("------------------------------------------------------------------------");
 			System.out.println("Enter your choice");
 			int choice = sc.nextInt();
 			switch (choice) {
@@ -70,8 +71,13 @@ public class DiseaseHelper {
 			case 2:
 				System.out.println("all list of diseases ");
 				Map<String, List<String>> hm = ServiceHelper.diseaseRepository.getAllDiseases();
+				System.out.println("All List of Diseases:\n");
 
-				System.out.println(hm);
+				hm.forEach((disease, symptoms) -> {
+				    System.out.println("Disease: " + disease);
+				    System.out.println("Symptoms: " + String.join(", ", symptoms));
+				    System.out.println("----------------------------------");
+				});
 				break;
 			case 3:
 				sc.nextLine();

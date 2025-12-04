@@ -33,7 +33,7 @@ public class DBInitilize {
 			conn = DriverManager.getConnection(url,username,password);
 			if(conn != null)
 			{
-				System.out.println("DataBase is Connected");
+				
 			}
 			else 
 			{

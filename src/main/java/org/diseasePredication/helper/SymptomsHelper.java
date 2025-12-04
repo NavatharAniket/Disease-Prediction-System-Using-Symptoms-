@@ -13,10 +13,12 @@ public class SymptomsHelper {
 	{
 		do {
 			Scanner sc=new Scanner(System.in);
+			System.out.println("------------------------------------------------------------------------");
 			System.out.println("Enter 1 for Add Symptoms");
 			System.out.println("Enter 2 for get all Symptoms");
 			System.out.println("Enter 3 for Delete Symptoms");
 			System.out.println("Enter 4 for go admin panel");
+			System.out.println("------------------------------------------------------------------------");
 			System.out.println("Enter your choice");
 			int choice =sc.nextInt();
 			switch(choice)
@@ -41,7 +43,9 @@ public class SymptomsHelper {
 						break;
 				case 2:
 						List<SymptomsModel>list=ServiceHelper.symptomsRepository.getAllSymptoms();
-						list.forEach(symptoms->System.out.println(symptoms.getSymtomsName()));
+						for (int i = 0; i < list.size(); i++) {
+						    System.out.println((i + 1) + ". " + list.get(i).getSymtomsName());
+						}
 						break;
 				case 3:
 						sc.nextLine();

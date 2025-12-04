@@ -12,11 +12,13 @@ public class UserHelper {
 		int k=0;
 		do {
 			Scanner sc = new Scanner(System.in);
+			System.out.println("------------------------------------------------------------------------");
 			System.out.println("1 - Add New user");
 			System.out.println("2 - View All User");
 			System.out.println("3 - Update User using email");
 			System.out.println("4 - Delete User using email");
 			System.out.println("5 - enter for go admin panel ");
+			System.out.println("------------------------------------------------------------------------");
 			int choice = sc.nextInt();
 			k=choice;
 			switch (choice) {
@@ -58,8 +60,14 @@ public class UserHelper {
 
 			case 2:
 				List<UserModel> list = ServiceHelper.UserRepository.getAllUsers();
-				list.forEach(user -> System.out
-						.println(user.getName() + "| \t" + user.getEmail() + "| \t " + user.getPassword()));
+				list.forEach(user -> {
+				    System.out.println("{");
+				    System.out.println("  name: " + user.getName());
+				    System.out.println("  email: " + user.getEmail());
+				    System.out.println("  password: " + user.getPassword());
+				    System.out.println("}");
+				});
+
 
 				break;
 

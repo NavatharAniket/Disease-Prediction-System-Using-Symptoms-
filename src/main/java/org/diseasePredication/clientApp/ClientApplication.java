@@ -24,9 +24,11 @@ public class ClientApplication {
 		String email;
 		do {
 			Scanner sc = new Scanner(System.in);
+			System.out.println("------------------------------------------------------------------------");
 			System.out.println("Enter 1 for Admin login ");
 			System.out.println("Enter 2 for User Login ");
 			System.out.println("Enter 3 if want to terminate code ");
+			System.out.println("------------------------------------------------------------------------");
 
 			int ch = sc.nextInt();
 			sc.nextLine();
@@ -54,11 +56,13 @@ public class ClientApplication {
 					int p=0;
 					do {
 						System.out.println("Admin Login Sucessfully ");
+						System.out.println("------------------------------------------------------------------------");
 						System.out.println("Admin Menu :-");
 						System.out.println("Enter 1 for UserAdmin");
 						System.out.println("Enter 2 for Symptoms Admin");
 						System.out.println("Enter 3 for Disease Admin");
 						System.out.println("Enter 4 for exit application");
+						System.out.println("------------------------------------------------------------------------");
 						int choice = sc.nextInt();
 						p=choice;
 						switch (choice) {
