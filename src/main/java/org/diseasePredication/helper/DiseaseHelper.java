@@ -9,9 +9,9 @@ import java.util.Set;
 import org.diseasePredication.Exception.DiseaseNotFoundException;
 import org.diseasePredication.Exception.DublicateDiseaseFoundException;
 import org.diseasePredication.model.DiseaseModel;
+import org.diseasePredication.model.DiseaseRepositoryImpl;
 import org.diseasePredication.model.SymptomsModel;
 import org.diseasePredication.repository.DiseaseRepository;
-import org.diseasePredication.repository.DiseaseRepositoryImpl;
 
 public class DiseaseHelper {
 	public static void crudDisease() {

@@ -2,12 +2,18 @@ package org.diseasePredication.clientApp;
 
 import java.util.Scanner;
 
+import org.diseasePredication.Exception.UserNotFoundException;
 import org.diseasePredication.helper.DiseaseHelper;
+import org.diseasePredication.helper.ServiceHelper;
 import org.diseasePredication.helper.SymptomsHelper;
 import org.diseasePredication.helper.UserHelper;
+import org.diseasePredication.helper.UserLoginHelper;
 import org.diseasePredication.model.AdminLogin;
+import org.diseasePredication.model.UserModel;
 import org.diseasePredication.repository.ValidateAdmin;
 import org.diseasePredication.repository.ValidateAdminRepoimpl;
+import org.diseasePredication.repository.ValidateUser;
+import org.diseasePredication.repository.ValidateUserImpl;
 
 public class ClientApplication {
 
@@ -15,6 +21,7 @@ public class ClientApplication {
 		// TODO Auto-generated method stub
 		String name;
 		String password;
+		String email;
 		do {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Enter 1 for Admin login ");
@@ -72,6 +79,44 @@ public class ClientApplication {
 					System.out.println("Admin login unsucessfull........");
 				}
 
+				break;
+
+			case 2:
+				try {
+					 System.out.println("Enter Email Id");
+					    email = sc.nextLine();
+					    
+					    UserModel userModel = new UserModel();
+					    userModel.setEmail(email);
+					    boolean c = ServiceHelper.UserRepository.isUserPresent(userModel);
+					    if (!c) {
+					        throw new UserNotFoundException(email);
+					    }
+					    System.out.println("Enter your password");
+					    password = sc.nextLine();
+
+					    userModel.setPassword(password);
+
+					    
+					
+					ValidateUser validateUser =new ValidateUserImpl();
+					
+					boolean flag=validateUser.isUserValid(userModel);
+					if(flag)
+					{
+						System.out.println("user is valid");
+						UserLoginHelper.getUserDiseaseInfo();
+					}
+					else
+					{
+						System.out.println("User is InValid");
+					}
+
+				} catch (UserNotFoundException ex) {
+					System.out.println(ex.getErrorMsg());
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 				break;
 			case 3:
 				System.out.println("Code terminated Sucessfully ");

@@ -22,8 +22,8 @@ public class ValidateAdminRepoimpl extends DBInitilize implements ValidateAdmin{
 				return true;
 			}
 			
-			
 		}
+		
 		catch(Exception ex)
 		{
 			System.out.println("exception found in repository package and Validate Admin Repo impl class ");

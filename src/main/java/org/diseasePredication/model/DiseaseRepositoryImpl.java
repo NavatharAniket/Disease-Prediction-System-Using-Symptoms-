@@ -1,4 +1,4 @@
-package org.diseasePredication.repository;
+package org.diseasePredication.model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +11,7 @@ import java.util.Set;
 import org.diseasePredication.Exception.DiseaseNotFoundException;
 import org.diseasePredication.Exception.DublicateDiseaseFoundException;
 import org.diseasePredication.dbConfig.DBInitilize;
-import org.diseasePredication.model.DiseaseModel;
-import org.diseasePredication.model.SymptomsModel;
+import org.diseasePredication.repository.DiseaseRepository;
 
 public class DiseaseRepositoryImpl extends DBInitilize implements DiseaseRepository {
 	List<SymptomsModel> listSymptoms;
