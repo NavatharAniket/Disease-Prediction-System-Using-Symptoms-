@@ -8,10 +8,8 @@ import org.diseasePredication.repository.DiseaseRepository;
 import org.diseasePredication.repository.SymptomsRepository;
 
 public class ServiceHelper {
-	public static UserRepository UserRepository=new UserRepositoryImpl();
+	public static UserRepository UserRepository = new UserRepositoryImpl();
 	public static SymptomsRepository symptomsRepository = new SymptomsRepositoryImpl();
-	public static DiseaseRepository diseaseRepository =new DiseaseRepositoryImpl();
-	
-	
-}
+	public static DiseaseRepository diseaseRepository = new DiseaseRepositoryImpl();
 
+}

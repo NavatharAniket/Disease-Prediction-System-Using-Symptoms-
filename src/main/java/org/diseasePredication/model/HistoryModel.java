@@ -14,4 +14,5 @@ public class HistoryModel {
 	String userSymtoms;
 	String predictedDisease;
 	double confidence;
+	String date;
 }

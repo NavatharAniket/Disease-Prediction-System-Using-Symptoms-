@@ -191,33 +191,24 @@ public class DiseaseRepositoryImpl extends DBInitilize implements DiseaseReposit
 	@Override
 	public boolean isDeleteDisease(String diseaseName) {
 		// TODO Auto-generated method stub
-		try
-		{
-			stsmt=conn.prepareStatement("select did from diseases where disease =?");
+		try {
+			stsmt = conn.prepareStatement("select did from diseases where disease =?");
 			stsmt.setString(1, diseaseName);
-			rs=stsmt.executeQuery();
-			if(!rs.next())
-			{
+			rs = stsmt.executeQuery();
+			if (!rs.next()) {
 				throw new DiseaseNotFoundException(diseaseName);
 			}
-			stsmt=conn.prepareStatement("delete from diseases where disease = ?");
+			stsmt = conn.prepareStatement("delete from diseases where disease = ?");
 			stsmt.setString(1, diseaseName);
-			int val=stsmt.executeUpdate();
-			if(val>0)
-			{
+			int val = stsmt.executeUpdate();
+			if (val > 0) {
 				System.out.println("Disease deleted from table disease");
-			}
-			else
-			{
+			} else {
 				System.out.println("disease not deleted from table disease");
 			}
-		}
-		catch(DiseaseNotFoundException d)
-		{
+		} catch (DiseaseNotFoundException d) {
 			System.out.println(d.getErrorMsg());
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			System.out.println("Exception from at time of delete disease");
 		}
 		return false;
@@ -231,7 +222,6 @@ public class DiseaseRepositoryImpl extends DBInitilize implements DiseaseReposit
 			stsmt.setString(1, diseaseModel.getDiseaseName());
 			rs = stsmt.executeQuery();
 
-		
 			return rs.next();
 		} catch (Exception ex) {
 			ex.printStackTrace();

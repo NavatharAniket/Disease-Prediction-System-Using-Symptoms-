@@ -9,31 +9,24 @@ public class ValidateUserImpl extends DBInitilize implements ValidateUser {
 	@Override
 	public boolean isUserValid(UserModel userModel) {
 		// TODO Auto-generated method stub
-		
+
 		try {
-			
-			stsmt=conn.prepareStatement("select * from users where gmail=? and password=?");
+
+			stsmt = conn.prepareStatement("select * from users where gmail=? and password=?");
 			stsmt.setString(1, userModel.getEmail());
 			stsmt.setString(2, userModel.getPassword());
-			rs=stsmt.executeQuery();
-			if(rs.next())
-			{
+			rs = stsmt.executeQuery();
+			if (rs.next()) {
 				return true;
 			}
 			throw new UserCreaditialsInvalidException();
-		}
-		catch(UserCreaditialsInvalidException ex)
-		{
+		} catch (UserCreaditialsInvalidException ex) {
 			System.out.print(ex.getErrorMeg());
-		}
-		catch(Exception ex)
-		{
+		} catch (Exception ex) {
 			System.out.println("Exception at time of Validate user");
 			ex.printStackTrace();
 		}
 		return false;
 	}
-
-	
 
 }

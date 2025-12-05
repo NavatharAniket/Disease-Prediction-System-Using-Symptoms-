@@ -16,12 +16,11 @@ public class UserRepositoryImpl extends DBInitilize implements UserRepository {
 		// TODO Auto-generated method stub
 
 		try {
-			
-			stsmt=conn.prepareStatement("select username from users where gmail =?");
+
+			stsmt = conn.prepareStatement("select username from users where gmail =?");
 			stsmt.setString(1, user.getEmail());
-			rs=stsmt.executeQuery();
-			while(rs.next())
-			{
+			rs = stsmt.executeQuery();
+			while (rs.next()) {
 				throw new DublicateUserFoundException(user.getEmail());
 			}
 			stsmt = conn.prepareStatement("insert into users(username,password,gmail) values (?,?,?)");
@@ -66,31 +65,29 @@ public class UserRepositoryImpl extends DBInitilize implements UserRepository {
 		}
 		return list;
 	}
-	
+
 	@Override
 	public boolean isUserPresent(UserModel userModel) {
-	    try {
-	        stsmt = conn.prepareStatement("SELECT gmail FROM users WHERE gmail = ?");
-	        stsmt.setString(1, userModel.getEmail());
-	        rs = stsmt.executeQuery();
+		try {
+			stsmt = conn.prepareStatement("SELECT gmail FROM users WHERE gmail = ?");
+			stsmt.setString(1, userModel.getEmail());
+			rs = stsmt.executeQuery();
 
-	        // If record exists → return true
-	        return rs.next();
-	    }
-	    catch (Exception ex) {
-	        ex.printStackTrace();
-	        return false;
-	    }
+			// If record exists → return true
+			return rs.next();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public UserModel updateUser(UserModel userModel) {
-		
+
 		try {
-			
-			
-				//case for handling when user name want to update 
-		     if (userModel.getName() != null && userModel.getPassword() == null) {
+
+			// case for handling when user name want to update
+			if (userModel.getName() != null && userModel.getPassword() == null) {
 
 				stsmt = conn.prepareStatement("update users set username = ? where gmail = ?");
 
@@ -117,7 +114,7 @@ public class UserRepositoryImpl extends DBInitilize implements UserRepository {
 				stsmt.setString(3, userModel.getEmail());
 			}
 
-			// case both are not provided 
+			// case both are not provided
 			else {
 				return null;
 			}
